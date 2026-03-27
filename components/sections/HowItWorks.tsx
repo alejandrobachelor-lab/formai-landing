@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { PenTool, Settings, Rocket, ArrowRight, Sparkles } from 'lucide-react'
-import AIScreenshot from '../AIScreenshot'
+import { PenTool, Settings, Rocket, CheckCircle } from 'lucide-react'
+import Image from 'next/image'
 
 export default function HowItWorks() {
   const steps = [
@@ -11,54 +11,65 @@ export default function HowItWorks() {
       icon: PenTool,
       title: 'Создай форму',
       description: 'Выбери шаблон или начни с нуля. Используй drag & drop конструктор или попроси AI сгенерировать форму за тебя.',
-      color: 'from-primary to-primary/50',
-      highlight: 'text-primary',
+      features: [
+        'Готовые шаблоны для любых задач',
+        'AI-генерация форм за секунды',
+        'Drag & drop конструктор'
+      ],
+      image: '/images/Professionals_in_business_202603271321.webp',
+      imageAlt: 'Команда обсуждает создание формы'
     },
     {
       number: '02',
       icon: Settings,
       title: 'Настрой и опубликуй',
       description: 'Добавь брендинг, настрой условную логику, подключи интеграции. Получи ссылку или embed-код для сайта.',
-      color: 'from-secondary to-secondary/50',
-      highlight: 'text-secondary',
+      features: [
+        'Кастомизация под ваш бренд',
+        'Интеграции с CRM и платежами',
+        'Готовый код для встраивания'
+      ],
+      image: '/images/Woman_typing_on_202603271301.webp',
+      imageAlt: 'Настройка и публикация формы'
     },
     {
       number: '03',
       icon: Rocket,
       title: 'Собирай заявки',
       description: 'Смотри аналитику в реальном времени, получай данные в CRM и Telegram. Оптимизируй конверсию на основе данных.',
-      color: 'from-success to-success/50',
-      highlight: 'text-success',
+      features: [
+        'Аналитика в реальном времени',
+        'Уведомления в Telegram',
+        'Автоматическая отправка в CRM'
+      ],
+      image: '/images/Professionals_in_business_202603271321.webp',
+      imageAlt: 'Анализ результатов и заявок'
     },
   ]
 
   return (
-    <section id="how-it-works" className="py-16 lg:py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-bg-card/30 via-bg-dark to-bg-card/30" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="how-it-works" className="py-16 lg:py-24 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 glass-effect rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-text-secondary">Простой процесс</span>
+          <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+            <span className="text-sm font-semibold text-primary">Простой процесс</span>
           </div>
-          <h2 className="text-section-mobile lg:text-section font-bold mb-3">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-text-primary">
             Как это работает
           </h2>
-          <p className="text-text-secondary text-base lg:text-lg max-w-2xl mx-auto">
+          <p className="text-text-secondary text-lg lg:text-xl max-w-2xl mx-auto">
             Три простых шага до первой заявки
           </p>
         </motion.div>
 
-        {/* Steps with Visual Flow */}
-        <div className="max-w-6xl mx-auto">
+        {/* Steps with Images */}
+        <div className="max-w-6xl mx-auto space-y-20">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -66,124 +77,86 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
-              className="relative mb-8 last:mb-0"
+              className="relative"
             >
-              <div className={`grid lg:grid-cols-2 gap-6 lg:gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Content Side */}
                 <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="glass-effect rounded-2xl p-6 lg:p-8 border border-white/10 relative">
+                  <div className="relative">
                     {/* Number Badge */}
-                    <div className={`absolute -top-3 -left-3 w-14 h-14 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center shadow-lg shadow-primary/20`}>
-                      <span className="text-xl font-bold text-white">{step.number}</span>
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mb-6 shadow-lg">
+                      <span className="text-2xl font-bold text-white">{step.number}</span>
                     </div>
 
                     {/* Icon */}
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${step.color} mb-4 mt-2`}>
-                      <step.icon className="w-6 h-6 text-white" />
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 mb-4">
+                      <step.icon className="w-7 h-7 text-primary" />
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl lg:text-2xl font-bold mb-3">{step.title}</h3>
-                    <p className="text-text-secondary leading-relaxed text-sm lg:text-base">{step.description}</p>
+                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-text-primary">{step.title}</h3>
+                    <p className="text-text-secondary leading-relaxed text-lg mb-6">{step.description}</p>
 
                     {/* Features List */}
-                    <div className="mt-4 space-y-2">
-                      {index === 0 && (
-                        <>
-                          <div className="flex items-center gap-2 text-sm text-text-secondary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                            <span>Готовые шаблоны</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-text-secondary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                            <span>AI-генерация форм</span>
-                          </div>
-                        </>
-                      )}
-                      {index === 1 && (
-                        <>
-                          <div className="flex items-center gap-2 text-sm text-text-secondary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                            <span>Условная логика</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-text-secondary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                            <span>Интеграции с CRM</span>
-                          </div>
-                        </>
-                      )}
-                      {index === 2 && (
-                        <>
-                          <div className="flex items-center gap-2 text-sm text-text-secondary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-success" />
-                            <span>Реальная аналитика</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-text-secondary">
-                            <div className="w-1.5 h-1.5 rounded-full bg-success" />
-                            <span>Уведомления в Telegram</span>
-                          </div>
-                        </>
-                      )}
+                    <div className="space-y-3">
+                      {step.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-text-primary text-base">{feature}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
 
-                {/* Visual Side */}
+                {/* Image Side */}
                 <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.2, duration: 0.6 }}
-                    className="relative"
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className="relative rounded-2xl overflow-hidden shadow-2xl"
                   >
-                    {index === 0 && <AIScreenshot variant="form" />}
-                    {index === 1 && <AIScreenshot variant="chat" />}
-                    {index === 2 && <AIScreenshot variant="analytics" />}
-                    
-                    {/* Glow effect */}
-                    <div className={`absolute inset-0 ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-secondary' : 'bg-success'} opacity-20 blur-3xl -z-10`} />
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src={step.image}
+                        alt={step.imageAlt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
                   </motion.div>
                 </div>
               </div>
 
-              {/* Arrow Connector */}
+              {/* Connector Line (except for last item) */}
               {index < steps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 + index * 0.2 }}
-                  className="flex justify-center my-6"
-                >
-                  <div className="flex flex-col items-center">
-                    <ArrowRight className={`w-6 h-6 ${step.highlight} rotate-90 animate-bounce`} />
-                    <div className={`w-0.5 h-8 bg-gradient-to-b ${step.color} opacity-50`} />
-                  </div>
-                </motion.div>
+                <div className="hidden lg:block absolute left-1/2 -bottom-10 w-0.5 h-20 bg-gradient-to-b from-primary/50 to-transparent transform -translate-x-1/2" />
               )}
             </motion.div>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-12"
+          transition={{ delay: 0.6 }}
+          className="text-center mt-16"
         >
           <button
             onClick={() => {
               const element = document.getElementById('waitlist')
               if (element) element.scrollIntoView({ behavior: 'smooth' })
             }}
-            className="group bg-gradient-primary text-white px-8 py-4 rounded-xl font-semibold text-base lg:text-lg transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/25 hover:shadow-primary/40 inline-flex items-center gap-2"
+            className="bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:bg-primary-dark shadow-lg hover:shadow-xl"
           >
-            Попробовать бесплатно
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Начать бесплатно
           </button>
+          <p className="text-text-muted text-sm mt-4">Без кредитной карты • Бесплатный план навсегда</p>
         </motion.div>
       </div>
     </section>

@@ -44,12 +44,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FF6B00;
+  background: #CCCCCC;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E65100;
+  background: #999999;
 }
 
 /* Hero overlay */
