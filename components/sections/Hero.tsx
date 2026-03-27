@@ -18,10 +18,10 @@ export default function Hero() {
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/images/hero-bg.jpg)',
+            backgroundImage: 'url(/images/Professionals_talking_in_202603271314.webp)',
           }}
         />
         <div className="absolute inset-0 hero-overlay" />
@@ -37,13 +37,13 @@ export default function Hero() {
           >
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Формы, которые{' '}
-              <span className="text-primary">разговаривают</span>
+              Анкеты и формы, которые работают на{' '}
+              <span className="text-primary">твой бизнес</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-2xl">
-              AI-конструктор форм для российского бизнеса. Создавайте статические анкеты и живые диалоговые формы за минуты.
+              FormAI — простой способ собирать заявки, опросы и обратную связь от клиентов. Без программистов, без сложных настроек
             </p>
 
             {/* Feature List */}
