@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-bg-dark/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,19 +43,24 @@ export default function Header() {
           <div className="flex items-center">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 group"
             >
-              FormAI
+              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span className="text-white font-bold text-xl">F</span>
+              </div>
+              <span className="text-2xl font-bold text-text-primary">
+                FormAI
+              </span>
             </button>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-text-secondary hover:text-text-primary transition-colors text-sm font-medium"
+                className="text-text-secondary hover:text-text-primary transition-colors text-base font-medium"
               >
                 {item.label}
               </button>
@@ -66,16 +71,16 @@ export default function Header() {
           <div className="hidden md:block">
             <button
               onClick={() => scrollToSection('waitlist')}
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg font-medium transition-all hover:scale-105 active:scale-95"
+              className="bg-primary text-white px-6 py-2.5 rounded-lg font-semibold text-base transition-all hover:bg-primary-dark shadow-md hover:shadow-lg"
             >
-              Получить ранний доступ
+              Ранний доступ
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-text-primary hover:text-primary transition-colors"
+            className="md:hidden text-text-primary hover:text-primary transition-colors p-2 hover:bg-gray-100 rounded-lg"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -89,21 +94,21 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-bg-card/95 backdrop-blur-lg border-t border-primary/20"
+            className="md:hidden bg-white border-t border-gray-200"
           >
-            <div className="container mx-auto px-4 py-4 space-y-3">
+            <div className="container mx-auto px-4 py-4 space-y-2">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors py-2 text-sm font-medium"
+                  className="block w-full text-left text-text-secondary hover:text-text-primary hover:bg-gray-50 transition-all py-3 px-4 text-base font-medium rounded-lg"
                 >
                   {item.label}
                 </button>
               ))}
               <button
                 onClick={() => scrollToSection('waitlist')}
-                className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg font-medium transition-all mt-4"
+                className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold text-base transition-all mt-3 shadow-md"
               >
                 Получить ранний доступ
               </button>

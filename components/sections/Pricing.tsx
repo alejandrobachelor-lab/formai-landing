@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, Zap, Crown, Rocket } from 'lucide-react'
+import { Check, Zap, Crown, Rocket, Sparkles } from 'lucide-react'
 
 export default function Pricing() {
   const plans = [
@@ -20,8 +20,8 @@ export default function Pricing() {
       ],
       cta: 'Начать бесплатно',
       popular: false,
-      gradient: 'from-bg-card to-bg-dark',
-      borderColor: 'border-primary/10',
+      gradient: 'from-bg-card to-bg-darker',
+      borderColor: 'border-white/10',
     },
     {
       name: 'PRO',
@@ -64,8 +64,8 @@ export default function Pricing() {
       ],
       cta: 'Связаться с нами',
       popular: false,
-      gradient: 'from-bg-card to-bg-dark',
-      borderColor: 'border-primary/10',
+      gradient: 'from-bg-card to-bg-darker',
+      borderColor: 'border-white/10',
     },
   ]
 
@@ -75,25 +75,35 @@ export default function Pricing() {
   }
 
   return (
-    <section id="pricing" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="py-16 lg:py-24 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-bg-card/20 to-bg-dark" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-section font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 glass-effect rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-text-secondary">Прозрачные цены</span>
+          </div>
+          <h2 className="text-section-mobile lg:text-section font-bold mb-3">
             Честные тарифы.{' '}
-            <span className="text-primary">Без сюрпризов.</span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Без сюрпризов.
+            </span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-text-secondary text-base lg:text-lg max-w-2xl mx-auto">
             Выбери план, который подходит твоему бизнесу
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-8">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -101,58 +111,62 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className={`relative bg-gradient-to-br ${plan.gradient} border-2 ${plan.borderColor} rounded-2xl p-8 ${
+              className={`relative glass-effect border-2 ${plan.borderColor} rounded-2xl p-6 lg:p-8 ${
                 plan.popular ? 'lg:scale-105 shadow-2xl shadow-primary/20' : ''
-              }`}
+              } hover:scale-[1.02] transition-all`}
             >
               {/* Popular Badge */}
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary px-6 py-2 rounded-full">
-                  <span className="text-sm font-bold text-white">ПОПУЛЯРНЫЙ</span>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-primary px-5 py-1.5 rounded-full shadow-lg">
+                  <span className="text-xs font-bold text-white uppercase tracking-wider">Популярный</span>
                 </div>
               )}
 
-              {/* Icon */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`${plan.popular ? 'bg-primary' : 'bg-primary/10'} w-12 h-12 rounded-xl flex items-center justify-center`}>
-                  <plan.icon className={`w-6 h-6 ${plan.popular ? 'text-white' : 'text-primary'}`} />
+              {/* Icon & Name */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`${plan.popular ? 'bg-gradient-primary' : 'bg-primary/10'} w-11 h-11 rounded-lg flex items-center justify-center`}>
+                  <plan.icon className={`w-5 h-5 ${plan.popular ? 'text-white' : 'text-primary'}`} />
                 </div>
-                <h3 className="text-2xl font-bold">{plan.name}</h3>
+                <h3 className="text-xl font-bold">{plan.name}</h3>
               </div>
 
-              <p className="text-text-secondary mb-6">{plan.description}</p>
+              <p className="text-text-secondary text-sm mb-6">{plan.description}</p>
 
               {/* Price */}
               <div className="mb-6">
                 {plan.earlyPrice ? (
                   <div>
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-5xl font-bold text-primary">{plan.earlyPrice}</span>
-                      <span className="text-text-secondary">₽</span>
-                      <span className="text-text-secondary">/ {plan.period}</span>
+                      <span className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{plan.earlyPrice}</span>
+                      <span className="text-text-secondary text-lg">₽</span>
                     </div>
+                    <div className="text-sm text-text-muted mb-1">/ {plan.period}</div>
                     <div className="flex items-center gap-2">
-                      <span className="text-text-secondary line-through text-sm">было {plan.originalPrice} ₽</span>
-                      <span className="bg-success/20 text-success text-xs px-2 py-1 rounded-full font-semibold">
-                        -50% РАННИЙ ДОСТУП
+                      <span className="text-text-muted line-through text-xs">было {plan.originalPrice} ₽</span>
+                      <span className="bg-success/20 text-success text-xs px-2 py-0.5 rounded-full font-semibold">
+                        -50%
                       </span>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-bold">{plan.price}</span>
-                    <span className="text-text-secondary">₽</span>
-                    <span className="text-text-secondary">/ {plan.period}</span>
+                  <div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl lg:text-5xl font-bold">{plan.price}</span>
+                      <span className="text-text-secondary text-lg">₽</span>
+                    </div>
+                    <div className="text-sm text-text-muted">/ {plan.period}</div>
                   </div>
                 )}
               </div>
 
               {/* Features */}
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-3 mb-6">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-                    <span className="text-text-secondary text-sm">{feature}</span>
+                  <li key={i} className="flex items-start gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-success" />
+                    </div>
+                    <span className="text-text-secondary text-sm leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -160,10 +174,10 @@ export default function Pricing() {
               {/* CTA Button */}
               <button
                 onClick={scrollToWaitlist}
-                className={`w-full py-4 rounded-lg font-semibold transition-all hover:scale-105 active:scale-95 ${
+                className={`w-full py-3 rounded-xl font-semibold text-sm transition-all hover:scale-105 active:scale-95 ${
                   plan.popular
-                    ? 'bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25'
-                    : 'bg-bg-dark hover:bg-bg-dark/80 text-white border border-primary/20'
+                    ? 'bg-gradient-primary text-white shadow-lg shadow-primary/25 hover:shadow-primary/40'
+                    : 'glass-effect text-text-primary border border-white/20 hover:bg-white/10'
                 }`}
               >
                 {plan.cta}
@@ -178,11 +192,11 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center mt-12"
+          className="text-center"
         >
-          <div className="inline-flex items-center gap-2 bg-success/10 border border-success/20 rounded-full px-6 py-3">
-            <Zap className="w-5 h-5 text-success" />
-            <span className="text-success font-semibold">
+          <div className="inline-flex items-center gap-2 glass-effect border border-success/30 rounded-full px-5 py-2.5">
+            <Zap className="w-4 h-4 text-success" />
+            <span className="text-success font-semibold text-sm">
               Цены для первых 200 пользователей заморожены навсегда
             </span>
           </div>

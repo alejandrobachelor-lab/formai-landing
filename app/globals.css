@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,13 +6,26 @@
 
 @layer base {
   body {
-    @apply bg-bg-dark text-text-primary font-sans;
+    @apply bg-bg-light text-text-primary font-sans;
+    background-attachment: fixed;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .glass-effect {
+    @apply bg-white/95 backdrop-blur-xl border border-gray-200 shadow-lg;
+  }
+  
+  .card-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-shadow-hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -23,18 +36,32 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A1A;
+  background: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6C63FF;
-  border-radius: 5px;
+  background: #FF6B00;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5a52e0;
+  background: #E65100;
+}
+
+/* Hero overlay */
+.hero-overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold transition-all hover:bg-primary-dark shadow-md hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-white text-text-primary px-6 py-3 rounded-lg font-semibold transition-all hover:bg-gray-50 border border-gray-300 shadow-sm hover:shadow-md;
 }
