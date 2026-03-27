@@ -42,7 +42,7 @@ export default function HowItWorks() {
         'Уведомления в Telegram',
         'Автоматическая отправка в CRM'
       ],
-      image: '/images/Professionals_in_business_202603271321.webp',
+      image: '/images/Professionals_discussing_in_202603271842.webp',
       imageAlt: 'Анализ результатов и заявок'
     },
   ]
