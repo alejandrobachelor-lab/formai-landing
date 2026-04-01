@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model WaitlistEntry {
@@ -16,4 +17,34 @@ model WaitlistEntry {
   name      String?
   useCase   String?
   createdAt DateTime @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  forms     Form[]
+}
+
+model Form {
+  id              String    @id @default(cuid())
+  userId          Int
+  title           String
+  description     String?
+  questions       Json
+  telegramChatId  String?
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  user            User      @relation(fields: [userId], references: [id])
+  responses       Response[]
+}
+
+model Response {
+  id        Int      @id @default(autoincrement())
+  formId    String
+  answers   Json
+  createdAt DateTime @default(now())
+  form      Form     @relation(fields: [formId], references: [id])
 }
