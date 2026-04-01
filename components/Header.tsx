@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -67,8 +68,14 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link
+              href="/dashboard/create"
+              className="bg-white text-primary border-2 border-primary px-6 py-2.5 rounded-lg font-semibold text-base transition-all hover:bg-primary hover:text-white shadow-md hover:shadow-lg"
+            >
+              Создать форму
+            </Link>
             <button
               onClick={() => scrollToSection('waitlist')}
               className="bg-primary text-white px-6 py-2.5 rounded-lg font-semibold text-base transition-all hover:bg-primary-dark shadow-md hover:shadow-lg"
@@ -106,9 +113,15 @@ export default function Header() {
                   {item.label}
                 </button>
               ))}
+              <Link
+                href="/dashboard/create"
+                className="block w-full text-center bg-white text-primary border-2 border-primary px-6 py-3 rounded-lg font-semibold text-base transition-all mt-3 shadow-md hover:bg-primary hover:text-white"
+              >
+                Создать форму
+              </Link>
               <button
                 onClick={() => scrollToSection('waitlist')}
-                className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold text-base transition-all mt-3 shadow-md"
+                className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold text-base transition-all shadow-md"
               >
                 Получить ранний доступ
               </button>
